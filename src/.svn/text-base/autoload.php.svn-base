@@ -1,0 +1,18 @@
+<?php
+
+function __autoload($className) {
+	$dirs = explode('_', $className);
+	$file = $dirs[count($dirs)-1];
+	unset($dirs[count($dirs)-1]);
+	$path = '';
+	foreach($dirs as $item ){
+		$dir = '';
+		switch($item){
+			case 'Model': $dir = 'models';  break;
+			case 'Controller': $dir = 'controllers';  break;
+			default: $dir = $item; break;
+		}
+		$path .= strtolower($dir).'/';
+	}
+    include $path.$file. '.php';
+}

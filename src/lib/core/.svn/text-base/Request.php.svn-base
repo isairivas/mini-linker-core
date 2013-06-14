@@ -1,0 +1,7 @@
+<?php
+
+class Lib_Core_Request {
+	function __construct() {
+	}
+}
+

@@ -1,0 +1,40 @@
+<?php
+
+/* constantes para los datos del proyecto */
+define('PROYECT_NAME','INVERTIVA');
+
+/* constantes donde se definen los valores de la base de datos */
+define('DB_SERVER', '127.0.0.1');
+define('DB_USER','root');
+define('DB_PASSWORD','123456');
+define('DB_NAME','lw_dev2');
+//define('DB_NAME','construire');
+
+/* configuracion donde se definen si se muestra los errores y warnigs o se ocultan */
+define('DISPLAY_ERRORS',true); 
+define('SHOW_DETAILS',false);
+
+/* configuracion para la cotizacion */
+define('_FACTOR_TASA_INTERES_1_',0.0105);
+define('_FACTOR_TASA_INTERES_2_',0.06);
+define('_FACTOR_TASA_INTERES_3_',0.015);
+define('_COSTO_MT2_DE_CONSTRUCCION_BASICO_CONTADO',6800.00);
+define('_COSTO_MT2_DE_CONSTRUCCION_BASICO_CREDITO',7800.00);
+define('_COSTO_MT2_DE_CONSTRUCCION_ESTANDAR_CONTADO',7500.00);
+define('_COSTO_MT2_DE_CONSTRUCCION_ESTANDAR_CREDITO',8500.00);
+
+/* configuraciones para el correo */
+
+// configuraciones generales del correo
+define('MAIL_ADMINISTRADOR','isai.audio@gmail.com');
+define('MAIL_ASUNTO','Cotizacion');
+define('MAIL_TEXTO','Te envio la cotizacion');
+// configuracion del servidor
+
+define('MAIL_SERVER_USERNAME','uriel.rodriguez@deintec.com');
+define('MAIL_SERVER_PASSWORD','deintec12');
+define('MAIL_SERVER_HOST','webmail.deintec.com');
+
+
+
+

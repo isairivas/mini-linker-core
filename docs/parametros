@@ -1,0 +1,40 @@
+
+- Tipo de servicio
+- metros cuadrados Construccion ---- si
+- montoDelTerreno ---- si (precio terreno)
+- enganche  -----si
+- costoDelMetroCuadradoDeConstruccion ---si (DEFINIDO)
+- factorTasaDeInteres1 ---- si (DEFINIDO)
+- factorTasaDeInteres2 --- si (DEFINIDO)
+
+
+TIPO DE SERVICIO 
+1.- BASICO_DE_CONTADO
+    --metrosCuadradosDeConstruccion  
+    --montoDelTerreno
+    --costoDelMetroCuadradoDeConstruccion
+    
+
+2.- BASICO_FINANCIAMIENTO_DE_OBRA
+  -- metrosCuadradosDeConstruccion
+  -- montoDelTerreno
+  -- enganche
+  -- costoDelMetroCuadradoDeConstruccion
+  -- factorTasaDeInteres1
+
+3.. BASICO_FINANCIAMIENTO_TOTAL
+  -- metrosCuadradosDeConstruccion
+  -- montoDelTerreno
+  -- enganche
+  -- costoDelMetroCuadradoDeConstruccion
+  -- factorTasaDeInteres1
+  -- factorTasaDeInteres2
+
+4.- ESTANDAR_DE_CONTADO
+    --metrosCuadradosDeConstruccion
+    --montoDelTerreno
+    --costoDelMetroCuadradoDeConstruccion
+
+5.-ESTANDAR_FINANCIAMIENTO_DE_OBRA
+
+6.- ESTANDAR_FINANCIAMIENTO_TOTAL

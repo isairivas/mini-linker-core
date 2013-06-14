@@ -1,0 +1,78 @@
+<div class="row">
+	<div class="container">
+		<div class="span12">
+		<h1>Resultado de la cotizacion</h1>
+			<div>
+				<div>
+				  <span class="key">Ingreso Mensual:</span><span class="value"><?php echo $resultado['ingresoMensual']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Egreso Mensual:</span><span class="value"><?php echo $resultado['egresoMensual']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Numero de Periodos:</span><span class="value"><?php echo $resultado['numeroDePeriodos']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Ingreso Libre:</span><span class="value"><?php echo $resultado['ingresoLibre']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Pago Mensual Recomendado:</span><span class="value"><?php echo $resultado['pagoMensualRecomendado']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Valor Actual:</span><span class="value"><?php echo $resultado['valorActual']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Comision de apertura:</span><span class="value"><?php echo $resultado['comisionDeApertura']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Seguro:</span><span class="value"><?php echo $resultado['seguro']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Suma:</span><span class="value"><?php echo $resultado['suma']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Porcentaje Tasa mensual:</span><span class="value"><?php echo $resultado['porcentajeDeTasaMensual']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Monto A financiar:</span><span class="value"><?php echo $resultado['montoAFinanciar']; ?></span>
+				</div>
+				<div>
+				  <span class="key">Pago Por Periodo:</span><span class="value"><?php echo $resultado['pagoPorPeriodo']; ?></span>
+				</div>
+				<h3>Pagos</h3>
+				<div>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Periodo</th>
+								<th>Intereses</th>
+								<th>iva Interes</th>
+								<th>Pago Capital</th>
+								<th>Monto a Financiar</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php foreach($resultado['pagos'] as $pago): ?>
+						<tr>
+							<td><?php echo $pago['periodo'] ?></td>
+							<td><?php echo $pago['intereses'] ?></td>
+							<td><?php echo $pago['ivaIntereses'] ?></td>
+							<td><?php echo $pago['pagoACapital'] ?></td>
+							<td><?php echo $pago['montoAFinanciar'] ?></td>
+						</tr>
+						<?php endforeach; ?>
+						</tbody>
+					</table>
+				
+				</div>
+			</div>
+			<form action="<?php echo go('index','procesar'); ?>" method="post">
+			<?php foreach($_POST as $key => $value): ?>
+			<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>" />
+			<?php endforeach; ?>
+			<button class="btn btn-warning" onclick="history.back();return false;" >Atras</button>
+			<input type="submit" class="btn btn-primary" value="Procesar cotizacion" />
+			</form>
+		</div>
+	</div>
+</div>

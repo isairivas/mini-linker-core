@@ -1,0 +1,144 @@
+<?php
+class Controller_Index extends Lib_Mvc_Controller {
+	
+	public function __construct(){
+		parent::__construct();
+		
+	}
+	
+	public function index(){
+		parent::renderView('includes/header');
+		parent::renderView('home/index');
+		parent::renderView('includes/footer');
+	}
+	
+	public function iniciar(){
+		parent::renderView('includes/header');
+		parent::renderView('home/iniciar');
+		parent::renderView('includes/footer');
+	}
+	
+	public function cotizar(){
+		$cotizador = new Model_Finanzas();
+		$ingresoMensual = 10000;
+		$egresoMensual = 6000;
+		$numeroDePeriodos = 24;
+		$post = $_POST;
+		$ingresoMensual = $post['ingreso_mensual'];
+		$egresoMensual = $post['egreso_mensual'];
+		$numeroDePeriodos = $post['numero_periodos'];
+		$resultado = $cotizador->cotizar($ingresoMensual, $egresoMensual, $numeroDePeriodos);
+		
+		$dataToView = array(
+			'resultado' => $resultado
+		);
+		parent::renderView('includes/header');
+		parent::renderView('home/resultado',$dataToView);
+		parent::renderView('includes/footer');
+	}
+	
+	public function procesar(){
+		$cotizador = new Model_Finanzas();
+		$clientesDB = new Model_Cliente();
+		$agentesDB = new Model_Agente();
+		
+		$post = $_POST;
+		$ingresoMensual = $post['ingreso_mensual'];
+		$egresoMensual = $post['egreso_mensual'];
+		$numeroDePeriodos = $post['numero_periodos'];
+		$resultado = $cotizador->cotizar($ingresoMensual, $egresoMensual, $numeroDePeriodos);
+		
+		/* guardando el cliente */
+		$clienteId = null;
+		$clienteData = array(
+				'nombre'     => $post['nombre'],
+				'email'      => $post['email'],
+				'telefono_a' => $post['telefono_a'],
+				'telefono_b' => $post['telefono_b'],
+				'created_at' => date('Y-m-d H:i:s')
+		);
+		try{
+			$clienteId = $clientesDB->save($clienteData);
+		}catch(Exception $e){//dump($e->getMessage());
+		}
+		
+		/* elegir agente para procesar la cotizacion */
+		$agente = $agentesDB->getAgenteAleatorio();
+		
+		$this->generarPdfCotizacion($resultado, $agente,2);
+	}
+	
+	public function generarPdfCotizacion($resultado,$agente,$output=1){
+	
+	
+		$nameFileDowloaded = date('Ymd').'_cotizacion_'.date('His').'_'.$agente['id'];
+	
+		$_SESSION['resultado'] = $resultado;
+		require_once PATH_APP . "/../vendors/dompdf/dompdf_config.inc.php";
+	
+		$file = PATH_APP . '/../views/reportes/pdf/cotizacion-template.php';
+		$orientation = 'portrait';
+		$paper = 'letter';
+	
+	
+		$dompdf = new DOMPDF();
+		$dompdf->load_html_file($file);
+		$dompdf->set_paper($paper, $orientation);
+		$dompdf->render();
+		if($output == 1){
+			$dompdf->stream("{$nameFileDowloaded}.pdf", array("Attachment" => true));
+		} else {
+			$pdf = $dompdf->output();
+			file_put_contents("{$nameFileDowloaded}.pdf", $pdf);
+		}
+	
+		return $nameFileDowloaded.'.pdf';
+	
+	}
+	
+	public function profile(){
+		$usuariosDB = new Model_Usuario();
+		$statusDB = new Lib_Db_AbstractTable('sys_status', 'id');
+		$status = $statusDB->select();
+		
+		$rolesDB = new Lib_Db_AbstractTable('roles', 'id');
+		$roles = $rolesDB->select();
+		$id = $_SESSION['user']['id'];
+		$usuario = $usuariosDB->getUsers($id);
+		if(isset($_GET['update']) && $_GET['update']==1 ){
+			$title = 'Se ha Guardado correctamente';
+		} else {
+			$title = 'Editar usuario';
+		}
+		$data = array(
+				'usuario' => $usuario[$id],
+				'title'  => $title,
+				'status' => $status,
+				'roles'  => $roles,
+				'action' => go('index','save'),
+				'isUserController' => false,
+				'passwordRequered' => false
+		);
+		parent::renderView('usuarios/edit',$data);
+		parent::renderView('includes/footer');
+	}
+	
+	public function save(){
+		$usuariosDB = new Model_Usuario();
+		$registro = $_POST;
+		if(!empty($registro['password'])){
+			$registro['password'] = md5($_POST['password']);
+		} else {
+			unset($registro['password']);
+		}
+		$id = $registro['id'];
+		unset($registro['id']);
+		try{
+			$usuariosDB->update($registro," WHERE id={$id} ");
+		}catch(Exception $e){}
+		$this->redirect(go('index','profile','&update=1'));
+	}
+	
+	
+}
+

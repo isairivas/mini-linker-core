@@ -1,0 +1,21 @@
+<?php
+class Lib_Mvc_Model extends Lib_Db_AbstractTable {
+	
+	public function __construct($nameTable,$primary) {
+		parent::__construct($nameTable, $primary);
+	}
+	
+	public function get(){
+		return $this->select();
+	}
+	
+	public function toArray($pdoResult){
+		$data = array();
+		foreach($pdoResult as $result ){
+			$data[] = $result;
+		}
+		
+		return $data;
+	}
+}
+

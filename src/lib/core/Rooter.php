@@ -18,16 +18,19 @@
 */
 class Lib_Core_Rooter {
 	
-	protected $defaultController = 'Index';
-	protected $defaultAction = 'index';
+	protected $defaultController = LINKER_DEFAULT_CONTROLLER;
+	protected $defaultAction = LINKER_DEFAULT_ACTION;
+	protected $defaultModule = LINKER_DEFAULT_MODULE;
 	
 	protected $controller = '';
 	protected $action = '';
+	protected $module = '';
 	
 	function __construct() {
 		
 		$this->controller = $this->defaultController;
 		$this->action = $this->defaultAction;
+		$this->module = $this->defaultModule;
 		
 	}
 	
@@ -36,7 +39,7 @@ class Lib_Core_Rooter {
 	*/
 	public function dispatch(){
 		$this->readRequest();
-		if(file_exists( PATH_APP .'/controllers/'. $this->controller.'.php')){
+		if(file_exists( PATH_APP.'/modules/'. $this->module .'/controllers/'. $this->controller.'.php')){
 			$controller = $this->controller;
 		}
 		
@@ -44,7 +47,7 @@ class Lib_Core_Rooter {
 		$request = array('controller' => $controller,'action' => $this->action ); 
 		Application::set('request', $request);
 		
-		$classControllerName = 'Controller_'.$controller;
+		$classControllerName = 'Module_'.ucfirst($this->module).'_Controller_'.$controller;
 		$object = new $classControllerName();
 		// mandar llamar accion
 		$action = $this->action;
@@ -62,6 +65,9 @@ class Lib_Core_Rooter {
 		}
 		if(isset($_GET['action'])){
 			$this->action = $_GET['action'];
+		}
+		if(isset($_GET['module'])){
+			$this->module = $_GET['module'];
 		}
 	}
 	

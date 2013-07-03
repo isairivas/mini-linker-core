@@ -20,8 +20,9 @@ function __autoload($className) {
 	foreach($dirs as $item ){
 		$dir = '';
 		switch($item){
-			case 'Model': $dir = 'models';  break;
+			case 'Model':      $dir = 'models';  break;
 			case 'Controller': $dir = 'controllers';  break;
+			case 'Module':     $dir = 'modules'; break;
 			default: $dir = $item; break;
 		}
 		$path .= strtolower($dir).'/';

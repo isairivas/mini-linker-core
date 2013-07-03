@@ -63,6 +63,7 @@ class Application {
 	}
 	
 	private function addConfigs(){
+		include_once PATH_CONFIG . '/init.config.php';
 		include_once PATH_CONFIG . '/application.config.php';
 	}
 	

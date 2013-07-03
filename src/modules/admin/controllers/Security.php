@@ -1,5 +1,5 @@
 <?php
-class Controller_Security extends Lib_Mvc_Controller {
+class Module_Admin_Controller_Security extends Lib_Mvc_Controller {
 	function __construct() {
 		parent::__construct();
 	}

@@ -44,7 +44,7 @@ class Lib_Core_Rooter {
 		}
 		
 		// registrar el controlador y la accion
-		$request = array('controller' => $controller,'action' => $this->action ); 
+		$request = array('module' => $this->module,'controller' => $controller,'action' => $this->action ); 
 		Application::set('request', $request);
 		
 		$classControllerName = 'Module_'.ucfirst($this->module).'_Controller_'.$controller;

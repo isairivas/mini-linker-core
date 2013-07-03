@@ -18,8 +18,10 @@ class Application {
 	protected $displayError = '-1';
 	protected $request = array();
 	protected $env = null;
+	private static $renderView = true;
 	
 	public static $registry = array();
+	public static $view = null;
 	
 	
 	public function __construct(){
@@ -35,6 +37,7 @@ class Application {
 		}
 		
 		$this->initAutoload();
+		self::$view = new Lib_Mvc_View();
 	}
 	
 	public function initAutoload(){
@@ -45,8 +48,12 @@ class Application {
 	public function run(){
 		$rooter = new Lib_Core_Rooter();
 		$rooter->dispatch();
+		
+		if(self::$renderView){
+			self::$view->render();
+		}
+		
 	}
-	
 	
 	private function initConstantes(){
 		$sourcePath = dirname(__FILE__);
@@ -66,6 +73,13 @@ class Application {
 		include_once PATH_CONFIG . '/init.config.php';
 		include_once PATH_CONFIG . '/application.config.php';
 	}
+	
+	public static function setRenderView($render){
+		if( is_bool($render) ){
+			self::$renderView = $render;
+		}
+	}
+	
 	
 	public static function hasAccess($nombrePermiso){
 		

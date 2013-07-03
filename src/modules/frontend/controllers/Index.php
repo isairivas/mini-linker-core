@@ -26,13 +26,10 @@ class Module_Frontend_Controller_Index extends Lib_Mvc_Controller {
 	
 	public function index(){
 		
-		echo "hola minilinkerweb";
+		echo "hola accion del controlador index <br/>";
+		$data = array('nombre' => 'isai');
 		
-		/*
-		parent::renderView('includes/header');
-		parent::renderView('home/index');
-		parent::renderView('includes/footer');
-		*/
+		Application::$view->setData($data);
 	}
 }
 

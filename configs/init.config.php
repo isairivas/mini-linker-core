@@ -16,3 +16,5 @@
 define('LINKER_DEFAULT_MODULE','frontend');
 define('LINKER_DEFAULT_CONTROLLER','Index');
 define('LINKER_DEFAULT_ACTION','index');
+
+define('APP_DEFAULT_LAYOUT','bootstrap');

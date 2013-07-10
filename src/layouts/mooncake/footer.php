@@ -1,4 +1,4 @@
-
+</div>
 </section>
 
 </div> <!--  END div element whith id=content -->

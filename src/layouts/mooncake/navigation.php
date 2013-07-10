@@ -14,3 +14,5 @@
              <span>es el titulo</span>
         </h1>
     </div>
+    
+    <div id="main-content">

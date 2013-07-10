@@ -42,7 +42,7 @@ class Lib_Mvc_View {
 				extract($this->_data,EXTR_OVERWRITE);
 			}
 			
-			include PATH_APP . '/modules/'.$requestRooter['module'].'/views/'.$requestRooter['action'].'.php';
+			include PATH_APP . '/modules/'.$requestRooter['module'].'/views/'.strtolower($requestRooter['controller']).'/'.$requestRooter['action'].'.php';
 		}
 		
 		$content = ob_get_contents();
@@ -59,5 +59,9 @@ class Lib_Mvc_View {
 		if(is_array($data) ){
 			$this->_data = $data;
 		}
+	}
+	
+	public function setLayout($layout){
+		$this->_layout = $layout;
 	}
 }

@@ -21,7 +21,7 @@ class Module_Frontend_Controller_Index extends Lib_Mvc_Controller {
 	 */
 	public function __construct(){
 		parent::__construct();
-	
+		Application::$view->setLayout('mooncake');
 	}
 	
 	public function index(){
@@ -30,6 +30,15 @@ class Module_Frontend_Controller_Index extends Lib_Mvc_Controller {
 		$data = array('nombre' => 'isai');
 		
 		Application::$view->setData($data);
+	}
+	
+	public function hola(){
+		echo 'hola controlador';
+		
+	}
+	
+	public function otro(){
+		Application::$view->setLayout('bootstrap');
 	}
 }
 

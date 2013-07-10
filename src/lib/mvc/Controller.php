@@ -22,14 +22,6 @@ class Lib_Mvc_Controller {
 		
 	}
 	
-	protected function renderView($name,$data = null){
-		if( !is_null($data) && is_array($data)){
-			extract($data);
-		}
-		
-		include PATH_APP . '/views/'.$name.'.php'; 
-	}
-	
 	protected function isSigned(){
 		if(isset($_SESSION['linker_signed_in']) && $_SESSION['linker_signed_in'] == 1 ){
 			return true;

@@ -56,9 +56,11 @@ class Application {
 	}
 	
 	private function initConstantes(){
+		$HOME = 'http://localhost/lw/minilinker';
 		$sourcePath = dirname(__FILE__);
 		define('PATH_APP',$sourcePath);
 		define('PATH_CONFIG',PATH_APP .'/../configs');
+		define('HOME',$HOME);
 	}
 	
 	public static function set($name,$value){

@@ -36,13 +36,13 @@ class Lib_Mvc_View {
 	private function fillContent(){
 		$requestRooter = Application::get('request');
 		ob_start();
-		if( file_exists(PATH_APP . '/modules/'.$requestRooter['module'].'/views/'.$requestRooter['action'].'.php') && is_readable(PATH_APP . '/modules/'.$requestRooter['module'].'/views/'.$requestRooter['action'].'.php') ){
-			
-			if( !is_null($this->_data) && is_array($this->_data) ){
+		$file = PATH_APP . '/modules/'.$requestRooter['module'].'/views/'.strtolower($requestRooter['controller']).'/'.$requestRooter['action'].'.php';
+		if ( file_exists($file) && is_readable($file)) {
+
+			if (!is_null($this->_data) && is_array($this->_data) ) {
 				extract($this->_data,EXTR_OVERWRITE);
 			}
-			
-			include PATH_APP . '/modules/'.$requestRooter['module'].'/views/'.strtolower($requestRooter['controller']).'/'.$requestRooter['action'].'.php';
+			include $file;
 		}
 		
 		$content = ob_get_contents();

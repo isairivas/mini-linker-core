@@ -1,9 +1,0 @@
-<div class="span12">
-	<h1>Bienvenidos</h1>
-<p></p>
-<a href="<?php echo go('index','iniciar'); ?>" class="btn btn-inverse">Iniciar Cotizacion</a>
-</div>
-
-
-    
-    

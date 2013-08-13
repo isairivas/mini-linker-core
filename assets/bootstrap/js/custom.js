@@ -1,1 +1,0 @@
-/* aqui van los script de javascript personalizados para la aplicacion */

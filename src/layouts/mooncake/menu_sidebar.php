@@ -1,6 +1,7 @@
 <aside id="sidebar">
     <nav id="navigation" class="collapse">
         <ul>
+            <!--
             <li class="active">
                 <span title="General">
                     <i class="icon-home"></i>
@@ -14,6 +15,21 @@
                     <li><a href="typography.html"><i class="icol-font"></i> Typography</a></li>
                 </ul>
             </li>
+            -->
+            <?php foreach(Application::get('__view-menu') as $Menu ): ?>
+            <li class="active">
+                <span title="<?php echo $Menu->getName(); ?>">
+                    <i class="icon-home"></i>
+                    <span class="nav-title"><?php echo $Menu->getName(); ?></span>
+                </span>
+                <ul class="inner-nav">
+                    <?php foreach($Menu->getChilds() as $Item): ?>
+                    <li class="active"><a href="<?php echo $Item->getLink();  ?>"><i class="<?php echo $Item->getIcon();  ?>"></i> <?php echo $Item->getName();  ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+            <?php endforeach; ?>
+            
             <li>
                 <span title="Table">
                     <i class="icon-table"></i>

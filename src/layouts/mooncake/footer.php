@@ -1,4 +1,4 @@
-</div>
+</section>
 </section>
 
 </div> <!--  END div element whith id=content -->
@@ -6,8 +6,8 @@
 </div> <!--  END div element whith id=content -->
 </div> <!-- END div element whith id=content-wrap -->
         <footer id="footer">
-            <div class="footer-left">MoonCake - Responsive Admin Template</div>
-            <div class="footer-right"><p>Copyright 2012. All Rights Reserved.</p></div>
+            <div class="footer-left"></div>
+            <div class="footer-right"><p></p></div>
         </footer>
  </div>
 

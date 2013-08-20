@@ -39,6 +39,7 @@
 <!-- Main Layout Stylesheet -->
 <link rel="stylesheet" href="<?php echo HOME; ?>/assets/mooncake/css/fonts/icomoon/style.css" media="screen">
 <link rel="stylesheet" href="<?php echo HOME; ?>/assets/mooncake/css/main-style.css" media="screen">
+<link rel="stylesheet" href="<?php echo HOME; ?>/assets/mooncake/css/app/custom.css" media="screen">
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>

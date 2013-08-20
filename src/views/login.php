@@ -10,7 +10,7 @@
 <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body>
-
+<!-- esto se borrara -->
 	<div class="container">
 		<form class="form-signin" action="index.php?section=security&action=in" method="post">
 			<h2 class="form-signin-heading">Ingrese sus datos</h2>

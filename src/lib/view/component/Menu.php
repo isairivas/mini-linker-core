@@ -15,7 +15,7 @@ class Lib_View_Component_Menu {
     
     private $_childs;
     
-    public function __construct($name=NULL,$link=NULL,$icon=NULL,$parent=NULL) {
+    public function __construct($name=NULL,$link=NULL,$icon=NULL,$active=NULL) {
         $this->_childs = array();
         if(!is_null($name)){
             $this->name = $name;
@@ -26,8 +26,10 @@ class Lib_View_Component_Menu {
         if(!is_null($icon)){
             $this->icon = $icon;
         }
-        if(!is_null($parent)){
-            $this->parent = $parent;
+        if(!is_null($active) && is_bool($active) ){
+            $this->active = $active;
+        } else {
+        	$this->active = FALSE;
         }
     }
     
@@ -75,6 +77,13 @@ class Lib_View_Component_Menu {
     }
     public function getActive(){
         return $this->active;
+    }
+    public function isActive(){
+    	if($this->active == TRUE){
+    		return TRUE;
+    	} else {
+    		return FALSE;
+    	}
     }
 }
 

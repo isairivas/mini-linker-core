@@ -32,16 +32,18 @@ class Module_Admin_Controller_Parent extends Lib_Mvc_Controller {
     }
     
     private function createMenu(){
-        $general = new Lib_View_Component_Menu('General','/','icon-home');
-        $general->addChild(new Lib_View_Component_Menu('Dashboard', '/admin', 'icol-dashboard'));
-        $general->addChild(new Lib_View_Component_Menu('Calendar', '/admin', 'icol-calendar-2'));
+        $general = new Lib_View_Component_Menu('Home','/','icon-home',true);
+        $general->addChild(new Lib_View_Component_Menu('Home', '/admin', 'icol-application-home',true));
         
-        $general2 = new Lib_View_Component_Menu('Configuraciones','/','icon-cogs');
-        $general2->addChild(new Lib_View_Component_Menu('Dashboard', '/admin', 'icol-dashboard'));
-        $general2->addChild(new Lib_View_Component_Menu('Calendar', '/admin', 'icol-calendar-2'));
+        $contenido = new Lib_View_Component_Menu('Contenidos','','icon-list');
         
         
-        Application::set('__view-menu', array($general,$general2));
+        $conf = new Lib_View_Component_Menu('Opciones','/','icon-cogs',true);
+        $conf->addChild(new Lib_View_Component_Menu('Usuarios', '/admin/usuarios', 'icol-user-business-boss'));
+        $conf->addChild(new Lib_View_Component_Menu('Salir', '/admin/login/out', 'icol-disconnect',true));
+        
+        
+        Application::set('__view-menu', array($general,$contenido,$conf));
     }
 }
 

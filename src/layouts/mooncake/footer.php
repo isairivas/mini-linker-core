@@ -18,14 +18,15 @@
     <script src="<?php echo HOME; ?>/assets/mooncake/js/libs/jquery.mousewheel.min.js"></script>
     
     <!-- Template Script -->
-    <script src="<?php echo HOME; ?>/assets/mooncake/assets/js/template.js"></script>
+    <script src="<?php echo HOME; ?>/assets/mooncake/js/template.js"></script>
     <script src="<?php echo HOME; ?>/assets/mooncake/js/setup.js"></script>
 
     <!-- Customizer, remove if not needed -->
     <script src="<?php echo HOME; ?>/assets/mooncake/js/customizer.js"></script>
 
-    <!-- Uniform Script -->
-    <script src="<?php echo HOME; ?>/assets/mooncake/uniform/jquery.uniform.min.js"></script>
+    <!-- Uniform Script 
+    <script src="<?php //echo HOME; ?>/assets/mooncake/uniform/jquery.uniform.min.js"></script>
+    -->
     
     <!-- jquery-ui Scripts -->
     <script src="<?php echo HOME; ?>/assets/mooncake/jui/js/jquery-ui-1.9.1.min.js"></script>
